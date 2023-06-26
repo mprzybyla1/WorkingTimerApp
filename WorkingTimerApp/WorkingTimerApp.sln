@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimerApp", "WorkingTimerApp\WorkingTimerApp.csproj", "{C7749BC7-9B2C-46C2-9DD4-1B236D12548B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkingTimerApp.Tests", "WorkingTimerApp.Tests\WorkingTimerApp.Tests.csproj", "{0756D186-8ED5-4992-97B6-FF8D26E36D51}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C7749BC7-9B2C-46C2-9DD4-1B236D12548B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7749BC7-9B2C-46C2-9DD4-1B236D12548B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7749BC7-9B2C-46C2-9DD4-1B236D12548B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7749BC7-9B2C-46C2-9DD4-1B236D12548B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0756D186-8ED5-4992-97B6-FF8D26E36D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0756D186-8ED5-4992-97B6-FF8D26E36D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0756D186-8ED5-4992-97B6-FF8D26E36D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0756D186-8ED5-4992-97B6-FF8D26E36D51}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {72647AF3-DF1C-486F-A26B-616F1C482726}
+	EndGlobalSection
+EndGlobal
