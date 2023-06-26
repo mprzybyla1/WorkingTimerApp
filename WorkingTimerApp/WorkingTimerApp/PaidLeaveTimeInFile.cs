@@ -6,7 +6,6 @@
 
         private const string fileName = "_paidLeaveTimes.txt";
 
-
         public PaidLeaveTimeInFile(string category)
             : base(category)
         {

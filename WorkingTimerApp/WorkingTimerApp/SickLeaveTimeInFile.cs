@@ -6,7 +6,6 @@
 
         private const string fileName = "_medicalLeaveTimes.txt";
 
-
         public SickLeaveTimeInFile(string category)
             : base(category)
         {
