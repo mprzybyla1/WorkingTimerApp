@@ -28,10 +28,6 @@
                 Console.WriteLine($"--> Average number of hours: {statistics.AverageWorkingTime}");
                 Console.WriteLine();
             }
-            else
-            {
-                throw new Exception("Probably no time added.");
-            }
         }
 
         public void ShowPartialStatistics()
@@ -41,10 +37,6 @@
             {
                 Console.WriteLine($"--> Summary number of hours: {statistics.TotalTime}");
                 Console.WriteLine();
-            }
-            else
-            {
-                throw new Exception("Probably no time added.");
             }
         }
     }

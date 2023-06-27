@@ -58,9 +58,8 @@ namespace WorkingTimesApp
             {
                 workingTime.ShowPartialStatistics();
             }
-            catch (Exception ex)
+            catch
             {
-                WriteLineColour(ConsoleColor.Red, $"Exception catched: {ex.Message}");
                 Console.WriteLine();
             }
 

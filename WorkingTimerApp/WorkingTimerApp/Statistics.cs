@@ -7,15 +7,28 @@
         {
             get
             {
-                return this.time.Min();
+                if (time.Count != 0)
+                {
+                    return this.time.Min();
+                }
+                else
+                {
+                    return TimeSpan.Zero;
+                }
             }
         }
-
         public TimeSpan LongestWorkingDay
         {
             get
             {
-                return this.time.Max();
+                if (time.Count != 0)
+                {
+                    return this.time.Max();
+                }
+                else
+                {
+                    return TimeSpan.Zero;
+                }
             }
         }
 
@@ -27,7 +40,14 @@
         {
             get
             {
-                return this.TotalTime.Divide(this.NumberOfDays);
+                if (time.Count != 0)
+                {
+                    return this.TotalTime.Divide(this.NumberOfDays);
+                }
+                else
+                {
+                    return TimeSpan.Zero;
+                }
             }
         }
 
