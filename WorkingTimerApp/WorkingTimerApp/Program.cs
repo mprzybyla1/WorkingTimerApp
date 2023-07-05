@@ -17,71 +17,32 @@ namespace WorkingTimesApp
                                                 "and finally get statistics.");
             WriteLineColour(ConsoleColor.Green, "================================================");
 
-            var workingTime = new WorkingTimeInFile("Working time");
-            var sickLeaveTime = new SickLeaveTimeInFile("L4");
-            var paidLeaveTime = new PaidLeaveTimeInFile("Holiday");
+            var workingTime = new TimerBase("WorkingTime", "_workingTimes.txt");
+            var sickLeaveTime = new TimerBase("SickLeaveTime", "_medicalLeaveTimes.txt");
+            var paidLeaveTime = new TimerBase("PaidLeaveTime", "_paidLeaveTimes.txt");
 
             workingTime.TimeAdded += WorkerTimeAdded;
             sickLeaveTime.TimeAdded += WorkerTimeAdded;
             paidLeaveTime.TimeAdded += WorkerTimeAdded;
 
-            void WorkerTimeAdded(object sender, EventArgs args)
+            static void WorkerTimeAdded(object sender, EventArgs args)
             {
                 Console.WriteLine("New time added");
             }
 
-            while (true)
+            static void AddToCategory(ITimer timer)
             {
-                WriteLineColour(ConsoleColor.Yellow, "Type your daily working time [hh:mm]:\n" +
-                                                     "--> press 's' to type your sick leave time\n");
+                WriteLineColour(ConsoleColor.Yellow, "Add time [hh:mm]");
+
                 WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
 
                 var input = Console.ReadLine();
 
                 WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
 
-                if (input == "s")
-                {
-                    break;
-                }
                 try
                 {
-                    workingTime.AddTime(input);
-                }
-                catch (Exception ex)
-                {
-                    WriteLineColour(ConsoleColor.Red, $"Exception catched: {ex.Message}");
-                    Console.WriteLine();
-                }
-            }
-            try
-            {
-                workingTime.ShowPartialStatistics();
-            }
-            catch
-            {
-                Console.WriteLine();
-            }
-
-            WriteLineColour(ConsoleColor.Green, "================================================");
-
-            while (true)
-            {
-                WriteLineColour(ConsoleColor.Yellow, "Type your sick leave time [hh:mm]:\n" +
-                                                     "--> press 'p' to type your paid leave time\n");
-                WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
-
-                var input = Console.ReadLine();
-
-                WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
-
-                if (input == "p")
-                {
-                    break;
-                }
-                try
-                {
-                    sickLeaveTime.AddTime(input);
+                    timer.AddTime(input);
                 }
                 catch (Exception ex)
                 {
@@ -92,26 +53,34 @@ namespace WorkingTimesApp
 
             while (true)
             {
-                WriteLineColour(ConsoleColor.Yellow, "Type your paid leave time [hh:mm]:\n" +
-                                                     "--> press 'x' to get statistics\n");
-                WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
+                WriteLineColour(ConsoleColor.Yellow, "--> Press 'w' to type your daily working time\n" +
+                                                     "--> Press 's' to type your sick leave time\n" +
+                                                     "--> Press 'p' to type your sick leave time\n" +
+                                                     "--> Press 'x' to get statistics");
+
+                WriteLineColour(ConsoleColor.Yellow, "\n...");
 
                 var input = Console.ReadLine();
 
-                WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
-
-                if (input == "x")
+                if (input == "w")
+                {
+                    AddToCategory(workingTime);
+                }
+                else if (input == "s")
+                {
+                    AddToCategory(sickLeaveTime);
+                }
+                else if (input == "p")
+                {
+                    AddToCategory(paidLeaveTime);
+                }
+                else if (input == "x")
                 {
                     break;
                 }
-                try
+                else
                 {
-                    paidLeaveTime.AddTime(input);
-                }
-                catch (Exception ex)
-                {
-                    WriteLineColour(ConsoleColor.Red, $"Exception catched: {ex.Message}");
-                    Console.WriteLine();
+                    WriteLineColour(ConsoleColor.Red,"Choose the right category");
                 }
             }
 

@@ -6,7 +6,7 @@
         public void TimeTests()
         {
             // arrange
-            var sickLeaveTime = new SickLeaveTimeInFile("L4");
+            var sickLeaveTime = new TimerBase("L4", "_sickLeaveTimes.txt");
 
             // act
             sickLeaveTime.AddTime("04:00");

@@ -6,8 +6,7 @@ namespace WorkingTimerApp.Tests
         public void TimeTests()
         {
             // arrange
-            var workingTime = new WorkingTimeInFile("Working time");
-
+            var workingTime = new TimerBase("Work", "_workingTimes.txt");
 
             // act
             workingTime.AddTime("04:00");
