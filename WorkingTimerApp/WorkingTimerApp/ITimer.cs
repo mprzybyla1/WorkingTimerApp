@@ -6,8 +6,6 @@ namespace WorkingTimerApp
     {
         string Category { get; }
 
-        string FileName { get; }
-
         void AddTime(string time);
 
         Statistics GetStatistics();

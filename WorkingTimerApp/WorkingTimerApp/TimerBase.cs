@@ -1,20 +1,21 @@
-﻿namespace WorkingTimerApp
+﻿using System.IO.Enumeration;
+
+namespace WorkingTimerApp
 {
-    public class TimerBase : ITimer
+    public abstract class TimerBase : ITimer
     {
         public delegate void TimeAddedDelegate(object sender, EventArgs args);
 
         public event TimeAddedDelegate TimeAdded;
 
-        public TimerBase(string category, string fileName)
+        public TimerBase(string category)
         {
             this.Category = category;
-            this.FileName = fileName;
         }
 
         public string Category { get; private set; }
 
-        public string FileName { get; private set; }    
+        public string fileName;
 
         public void AddTime(string time)
         {
@@ -23,9 +24,9 @@
 
             if (TimeSpan.TryParseExact(time, format, null, out TimeSpan result))
             {
-                using (var writer = File.AppendText($"{FileName}"))
+                using (var writer = File.AppendText($"{fileName}"))
                 {
-                    writer.WriteLine(result);
+                    writer.WriteLine(time);
                 }
                 if (TimeAdded != null)
                 {
@@ -53,9 +54,9 @@
         private List<TimeSpan> ReadTimesFromFile()
         {
             var timesFromFile = new List<TimeSpan>();
-            if (File.Exists($"{FileName}"))
+            if (File.Exists($"{fileName}"))
             {
-                using (var reader = File.OpenText($"{FileName}"))
+                using (var reader = File.OpenText($"{fileName}"))
                 {
                     var line = reader.ReadLine();
                     while (line != null)

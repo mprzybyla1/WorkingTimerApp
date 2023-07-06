@@ -17,39 +17,13 @@ namespace WorkingTimesApp
                                                 "and finally get statistics.");
             WriteLineColour(ConsoleColor.Green, "================================================");
 
-            var workingTime = new TimerBase("WorkingTime", "_workingTimes.txt");
-            var sickLeaveTime = new TimerBase("SickLeaveTime", "_medicalLeaveTimes.txt");
-            var paidLeaveTime = new TimerBase("PaidLeaveTime", "_paidLeaveTimes.txt");
+            var workingTime = new WorkingTimeInFile("WorkingTime");
+            var sickLeaveTime = new SickLeaveTimeInFile("SickLeaveTime");
+            var paidLeaveTime = new PaidLeaveTimeInFile("PaidLeaveTime");
 
             workingTime.TimeAdded += WorkerTimeAdded;
             sickLeaveTime.TimeAdded += WorkerTimeAdded;
             paidLeaveTime.TimeAdded += WorkerTimeAdded;
-
-            static void WorkerTimeAdded(object sender, EventArgs args)
-            {
-                Console.WriteLine("New time added");
-            }
-
-            static void AddToCategory(ITimer timer)
-            {
-                WriteLineColour(ConsoleColor.Yellow, "Add time [hh:mm]");
-
-                WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
-
-                var input = Console.ReadLine();
-
-                WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
-
-                try
-                {
-                    timer.AddTime(input);
-                }
-                catch (Exception ex)
-                {
-                    WriteLineColour(ConsoleColor.Red, $"Exception catched: {ex.Message}");
-                    Console.WriteLine();
-                }
-            }
 
             while (true)
             {
@@ -93,6 +67,32 @@ namespace WorkingTimesApp
             sickLeaveTime.ShowPartialStatistics();
             WriteLineColour(ConsoleColor.Cyan, "Paid leave time:");
             paidLeaveTime.ShowPartialStatistics();
+        }
+        
+        static void WorkerTimeAdded(object sender, EventArgs args)
+        {
+            Console.WriteLine("New time added");
+        }
+
+        private static void AddToCategory(ITimer timer)
+        {
+            WriteLineColour(ConsoleColor.Yellow, "Add time [hh:mm]");
+
+            WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
+
+            var input = Console.ReadLine();
+
+            WriteLineColour(ConsoleColor.Yellow, "~~~~~~~~~~");
+
+            try
+            {
+                timer.AddTime(input);
+            }
+            catch (Exception ex)
+            {
+                WriteLineColour(ConsoleColor.Red, $"Exception catched: {ex.Message}");
+                Console.WriteLine();
+            }
         }
 
         private static void WriteLineColour(ConsoleColor color, string text)
